@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["python3", "gcc"]
+nixPkgs = ["python3", "python3Packages.pip"]
 
 [phases.install]
-cmds = ["python3 -m venv venv", ". venv/bin/activate", "pip install -r requirements.txt"]
+cmds = ["pip install -r requirements.txt"]
 
 [start]
 cmd = "python3 aspro_to_gsheets.py"
