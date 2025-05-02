@@ -12,6 +12,11 @@ from google.oauth2.credentials import Credentials
 token_info = json.loads(base64.b64decode(os.getenv("GOOGLE_TOKEN")))
 creds = Credentials.from_authorized_user_info(token_info)
 client = gspread.authorize(creds)
+print("======= GOOGLE TOKEN DEBUG =======")
+print("Scopes:", token_info.get("scopes"))
+print("Client:", token_info.get("client_id"))
+print("Expiry:", token_info.get("expiry"))
+print("==================================")
 
 # --- CONFIG FROM ENV ---
 ASPRO_API_KEY = os.getenv("ASPRO_API_KEY")
