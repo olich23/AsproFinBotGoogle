@@ -3,9 +3,12 @@
 import os
 import requests
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+import base64
 from datetime import datetime
-import gspread
+
+# --- Decode credentials.json from base64 env variable ---
+with open("credentials.json", "wb") as f:
+    f.write(base64.b64decode(os.getenv("GOOGLE_CREDENTIALS")))
 
 # --- CONFIG FROM ENV ---
 ASPRO_API_KEY = os.getenv("ASPRO_API_KEY")
@@ -15,7 +18,6 @@ SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME")
 # --- Google Sheets Setup ---
 client = gspread.service_account(filename='credentials.json')
 sheet = client.open(SPREADSHEET_NAME).sheet1
-
 
 # --- Helpers ---
 def aspro_get(endpoint, params=None):
@@ -84,4 +86,3 @@ def update_sheet():
 if __name__ == "__main__":
     update_sheet()
     print("Данные успешно обновлены в таблице.")
-
