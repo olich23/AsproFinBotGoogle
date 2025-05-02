@@ -1,8 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "python3Packages.pip"]
-
-[phases.install]
-cmds = ["pip install -r requirements.txt"]
+nixPkgs = ["python311", "python311Packages.requests", "python311Packages.gspread", "python311Packages.oauth2client"]
 
 [start]
 cmd = "python3 aspro_to_gsheets.py"
