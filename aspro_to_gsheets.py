@@ -12,10 +12,9 @@ ASPRO_DOMAIN = os.getenv("ASPRO_DOMAIN")
 SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME")
 
 # --- Google Sheets Setup ---
-SCOPES = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-CREDS = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', SCOPES)
-client = gspread.authorize(CREDS)
+client = gspread.service_account(filename='credentials.json')
 sheet = client.open(SPREADSHEET_NAME).sheet1
+
 
 # --- Helpers ---
 def aspro_get(endpoint, params=None):
