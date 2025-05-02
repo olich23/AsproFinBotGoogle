@@ -1,5 +1,0 @@
-[phases.setup]
-nixPkgs = ["python311", "python311Packages.requests", "python311Packages.gspread", "python311Packages.oauth2client"]
-
-[start]
-cmd = "python3 aspro_to_gsheets.py"
