@@ -5,6 +5,7 @@ import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+import gspread
 
 # --- CONFIG FROM ENV ---
 ASPRO_API_KEY = os.getenv("ASPRO_API_KEY")
