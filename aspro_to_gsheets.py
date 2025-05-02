@@ -1,10 +1,15 @@
 # aspro_to_gsheets.py
 
 import os
+import base64
 import requests
 import gspread
 from datetime import datetime
 from google.oauth2.credentials import Credentials
+
+# --- Decode token.json from base64 ---
+with open("token.json", "wb") as f:
+    f.write(base64.b64decode(os.getenv("GOOGLE_TOKEN")))
 
 # --- CONFIG FROM ENV ---
 ASPRO_API_KEY = os.getenv("ASPRO_API_KEY")
