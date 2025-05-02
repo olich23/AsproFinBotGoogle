@@ -3,20 +3,17 @@
 import os
 import requests
 import gspread
-import base64
 from datetime import datetime
-
-# --- Decode credentials.json from base64 env variable ---
-with open("credentials.json", "wb") as f:
-    f.write(base64.b64decode(os.getenv("GOOGLE_CREDENTIALS")))
+from google.oauth2.credentials import Credentials
 
 # --- CONFIG FROM ENV ---
 ASPRO_API_KEY = os.getenv("ASPRO_API_KEY")
 ASPRO_DOMAIN = os.getenv("ASPRO_DOMAIN")
 SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME")
 
-# --- Google Sheets Setup ---
-client = gspread.service_account(filename='credentials.json')
+# --- Google Sheets Setup using OAuth2 token ---
+creds = Credentials.from_authorized_user_file("token.json")
+client = gspread.authorize(creds)
 sheet = client.open(SPREADSHEET_NAME).sheet1
 
 # --- Helpers ---
